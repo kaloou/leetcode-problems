@@ -5,6 +5,7 @@ int reverse(int x)
 {
     int digit;
     int reverse_x = 0;
+    int too_long = 0;
     while(x != 0)
     {
         digit = x % 10;
@@ -12,8 +13,11 @@ int reverse(int x)
         if (reverse_x > INT_MAX / 10 || 
             (reverse_x == INT_MAX / 10 && digit > INT_MAX % 10) ||
             reverse_x < INT_MIN / 10 ||
-            (reverse_x == INT_MIN / 10 && digit < INT_MIN % 10))
-            return 0;
+            (reverse_x == INT_MIN / 10 && digit < INT_MIN % 10)){
+                too_long = 1;
+                break;
+            }
+            
 
         reverse_x = reverse_x * 10 + digit;
         x = x / 10;
@@ -24,7 +28,7 @@ int reverse(int x)
 
 int main(void)
 {
-    int x = 120;
-    printf("reverse de 120 = %d",reverse(x));
+    int x = 2147345342;
+    printf("reverse de 121 = %d",reverse(x));
     return 0;
 }
